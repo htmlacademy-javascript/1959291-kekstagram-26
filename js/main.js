@@ -11,8 +11,7 @@ function getRandomIntInclusive(min, max) {
 getRandomIntInclusive(1, 5);
 
 function isLengthCorrect (str, maxStrLength) {
-  const lengthCorrect = str.length <= maxStrLength;
-  return (lengthCorrect);
+  return (str.length <= maxStrLength);
 }
 
 isLengthCorrect('Test', 10);
