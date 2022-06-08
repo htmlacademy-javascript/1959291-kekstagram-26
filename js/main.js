@@ -82,7 +82,7 @@ const getRandomPositiveInteger = (a, b) => {
   const min = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
   const max = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
   const result = Math.random() * (max - min + 1) + min;
-  return Math.floor(result);
+  return Math.floor(result)
   }
   return('Введены некорректные данные, введите положительные числа или 0')
 }
@@ -116,11 +116,6 @@ const getRandomArrayElement = (elements) => {
 // console.log(getRandomArrayElement(createUniqueCommentId(MAXIMUM_COMMENTS_NUMBER, MINIMUM_COMMENT_ID, MAXIMUM_COMMENT_ID)));
 
 const createComment = () => {
-  const randomAvatar = 'img/avatar-' + getRandomPositiveInteger(MINIMUM_AVATAR_NUMBER, MAXIMUM_AVATAR_NUMBER) + '.svg';
-  const randomMessage = MESSAGES[getRandomPositiveInteger(0, MESSAGES.length - 1)];
-  const randomName = NAMES[getRandomPositiveInteger(0, MESSAGES.length - 1)];
-  const commentId = createUniqueCommentId(MAXIMUM_COMMENTS_NUMBER, MINIMUM_COMMENT_ID, MAXIMUM_COMMENT_ID);
-
   return {
     id: getRandomArrayElement(createUniqueCommentId(MAXIMUM_COMMENTS_NUMBER, MINIMUM_COMMENT_ID, MAXIMUM_COMMENT_ID)),
     avatar: 'img/avatar-' + getRandomPositiveInteger(MINIMUM_AVATAR_NUMBER, MAXIMUM_AVATAR_NUMBER) + '.svg',
