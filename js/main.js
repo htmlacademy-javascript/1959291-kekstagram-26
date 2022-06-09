@@ -113,8 +113,6 @@ const getRandomArrayElement = (elements) => {
   return elements[getRandomPositiveInteger(0, elements.length-1)]
 }
 
-// console.log(getRandomArrayElement(createUniqueCommentId(MAXIMUM_COMMENTS_NUMBER, MINIMUM_COMMENT_ID, MAXIMUM_COMMENT_ID)));
-
 const createComment = () => {
   return {
     id: getRandomArrayElement(createUniqueCommentId(MAXIMUM_COMMENTS_NUMBER, MINIMUM_COMMENT_ID, MAXIMUM_COMMENT_ID)),
@@ -123,10 +121,6 @@ const createComment = () => {
     name: NAMES[getRandomPositiveInteger(0, NAMES.length - 1)],
   }
 };
-
-// console.log(createComment());
-// const comments_test = Array.from({length: getRandomPositiveInteger(0, MAXIMUM_COMMENTS_NUMBER)}, createComment);
-// console.log(comments_test);
 
 const createObject = (i) => {
   return {
@@ -138,11 +132,15 @@ const createObject = (i) => {
   }
 };
 
-let myDataObjects = [];
+const createMyDataObjects = () => {
+  let myDataObjects = [];
 
-for (let i = 0; i < OBJECT_COUNT; i++) {
+  for (let i = 0; i < OBJECT_COUNT; i++) {
   // чтобы на [0] месте массива id был 1
   myDataObjects[i] = createObject(i+1);
+  }
+
+  return (myDataObjects);
 }
 
-console.log(myDataObjects);
+createMyDataObjects();
