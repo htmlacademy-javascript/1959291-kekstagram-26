@@ -79,68 +79,62 @@ const MAXIMUM_COMMENT_ID = 2000;
 // функция случайного целого числа из диапазона
 const getRandomPositiveInteger = (a, b) => {
   if (a >= 0 && b >= 0)  {
-  const min = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
-  const max = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
-  const result = Math.random() * (max - min + 1) + min;
-  return Math.floor(result)
+    const min = Math.ceil(Math.min(Math.abs(a), Math.abs(b)));
+    const max = Math.floor(Math.max(Math.abs(a), Math.abs(b)));
+    const result = Math.random() * (max - min + 1) + min;
+    return Math.floor(result);
   }
-  return('Введены некорректные данные, введите положительные числа или 0')
-}
+  return('Введены некорректные данные, введите положительные числа или 0');
+};
 
 // функция создания массива уникальных чисел, длинна массива, диапазон чисел в массиве
 const createUniqueCommentId = (arrayLength, a, b) => {
   // объявляем массив для случайных чисел и массив для уникальных id комментариев
-  let randomArray = [];
+  const randomArray = [];
   let uniqueCommentId = [];
 
   // если длина уникального массива меньше чем нам необходимо уникальных id, то
   while (uniqueCommentId.length < arrayLength) {
 
-  /* наполняем массив случайными числами, в диапазоне допустимом для для COMMENT_ID
+    /* наполняем массив случайными числами, в диапазоне допустимом для для COMMENT_ID
   (в два раза длиннее чем нам необходим - для того, чтобы нам хватило чисел для уникального массива после удаления повторяющихся)
   */
-  for (i = 0; i <= arrayLength*2; i++) {
-    randomArray[i] = getRandomPositiveInteger(a, b);
-  }
-  // создаем уникальный массив из случайного массива и обрезаем его до необходимой длины
+    for (let i = 0; i <= arrayLength*2; i++) {
+      randomArray[i] = getRandomPositiveInteger(a, b);
+    }
+    // создаем уникальный массив из случайного массива и обрезаем его до необходимой длины
     uniqueCommentId = [...new Set(randomArray)].splice(0, arrayLength);
   }
-  return uniqueCommentId
-}
+  return uniqueCommentId;
+};
 
 // функция случайного элемента из массива
-const getRandomArrayElement = (elements) => {
-  return elements[getRandomPositiveInteger(0, elements.length-1)]
-}
+const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0, elements.length-1)];
 
-const createComment = () => {
-  return {
-    id: getRandomArrayElement(createUniqueCommentId(MAXIMUM_COMMENTS_NUMBER, MINIMUM_COMMENT_ID, MAXIMUM_COMMENT_ID)),
-    avatar: 'img/avatar-' + getRandomPositiveInteger(MINIMUM_AVATAR_NUMBER, MAXIMUM_AVATAR_NUMBER) + '.svg',
-    message: MESSAGES[getRandomPositiveInteger(0, MESSAGES.length - 1)],
-    name: NAMES[getRandomPositiveInteger(0, NAMES.length - 1)],
-  }
-};
+const createComment = () => ({
+  id: getRandomArrayElement(createUniqueCommentId(MAXIMUM_COMMENTS_NUMBER, MINIMUM_COMMENT_ID, MAXIMUM_COMMENT_ID)),
+  avatar: `img/avatar-${  getRandomPositiveInteger(MINIMUM_AVATAR_NUMBER, MAXIMUM_AVATAR_NUMBER)  }.svg`,
+  message: MESSAGES[getRandomPositiveInteger(0, MESSAGES.length - 1)],
+  name: NAMES[getRandomPositiveInteger(0, NAMES.length - 1)],
+});
 
-const createObject = (i) => {
-  return {
-    id: i,
-    url: 'photos/' + i + '.jpg',
-    description: DESCRIPTIONS[i-1],
-    likes: getRandomPositiveInteger(MINIMUM_LIKES, MAXIMUM_LIKES),
-    comments: Array.from({length: getRandomPositiveInteger(1, MAXIMUM_COMMENTS_NUMBER)}, createComment),
-  }
-};
+const createObject = (i) => ({
+  id: i,
+  url: `photos/${  i  }.jpg`,
+  description: DESCRIPTIONS[i-1],
+  likes: getRandomPositiveInteger(MINIMUM_LIKES, MAXIMUM_LIKES),
+  comments: Array.from({length: getRandomPositiveInteger(1, MAXIMUM_COMMENTS_NUMBER)}, createComment),
+});
 
 const createMyDataObjects = () => {
-  let myDataObjects = [];
+  const myDataObjects = [];
 
   for (let i = 0; i < OBJECT_COUNT; i++) {
   // чтобы на [0] месте массива id был 1
-  myDataObjects[i] = createObject(i+1);
+    myDataObjects[i] = createObject(i+1);
   }
 
   return (myDataObjects);
-}
+};
 
 createMyDataObjects();
