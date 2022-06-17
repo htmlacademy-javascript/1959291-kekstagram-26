@@ -1,6 +1,5 @@
-import {getRandomArrayElement} from './util.js'
+import {getRandomArrayElement} from './util.js';
 import {getRandomPositiveInteger} from './util.js';
-
 
 const NAMES = [
   'Шерлок',
