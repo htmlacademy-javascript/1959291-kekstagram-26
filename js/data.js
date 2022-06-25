@@ -1,5 +1,4 @@
-import {getRandomArrayElement} from './util.js';
-import {getRandomPositiveInteger} from './util.js';
+import {getRandomPositiveInteger, getRandomArrayElement} from './util.js';
 
 const NAMES = [
   'Шерлок',
@@ -66,7 +65,7 @@ const MINIMUM_LIKES = 15;
 const MAXIMUM_LIKES = 200;
 const MINIMUM_AVATAR_NUMBER = 1;
 const MAXIMUM_AVATAR_NUMBER = 6;
-const MAXIMUM_COMMENTS_NUMBER = 4;
+const MAXIMUM_COMMENTS_NUMBER = 7;
 const MINIMUM_COMMENT_ID = 1;
 const MAXIMUM_COMMENT_ID = 2000;
 
@@ -113,7 +112,6 @@ const createMyDataObjects = () => {
   // чтобы на [0] месте массива id был 1
     myDataObjects[i] = createObject(i+1);
   }
-
   return (myDataObjects);
 };
 

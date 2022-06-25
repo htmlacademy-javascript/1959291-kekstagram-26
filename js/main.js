@@ -1,3 +1,1 @@
-import {createMyDataObjects} from './data.js';
-
-createMyDataObjects();
+import './thumbnails-creating.js';
