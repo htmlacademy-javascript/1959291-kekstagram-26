@@ -1,8 +1,3 @@
-// import {createMyDataObjects} from './data.js';
-
-// // генерируем данные
-// const similarPhotos = createMyDataObjects();
-
 const createThumbnails = (dataObjects) => {
 
   // ищем блок для вставки изображений
@@ -27,7 +22,6 @@ const createThumbnails = (dataObjects) => {
 
   // добавляем фрагмент в блок
   otherUserPictures.appendChild(dataObjectsFragment);
-
 };
 
 export {createThumbnails};

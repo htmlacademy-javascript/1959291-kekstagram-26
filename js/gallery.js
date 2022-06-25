@@ -2,7 +2,6 @@ import {createData} from './data.js';
 import {createThumbnails} from './thumbnails.js';
 import {showBigImage} from './big-image.js';
 
-
 // генерируем данные
 const inputData = createData();
 

@@ -1,4 +1,3 @@
-// соберем весь блок наполнения данными в одну функцию
 const showBigImage = (data) => {
   // ищем блок большого фото и показываем его на экране
   const bigPicture = document.querySelector('.big-picture');
