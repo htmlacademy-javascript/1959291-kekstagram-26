@@ -105,14 +105,15 @@ const createObject = (i) => ({
   comments: Array.from({length: getRandomPositiveInteger(1, MAXIMUM_COMMENTS_NUMBER)}, createComment),
 });
 
-const createMyDataObjects = () => {
+const createData = () => {
   const myDataObjects = [];
 
   for (let i = 0; i < OBJECT_COUNT; i++) {
   // чтобы на [0] месте массива id был 1
     myDataObjects[i] = createObject(i+1);
   }
+
   return (myDataObjects);
 };
 
-export {createMyDataObjects};
+export {createData};
