@@ -38,3 +38,4 @@ for (let i = 0; i < picturesImg.length; i++) {
   addPictureClickHandler(picturesImg[i], inputData[i]);
   addPictureEnterHandler(linkImg[i], inputData[i]);
 }
+

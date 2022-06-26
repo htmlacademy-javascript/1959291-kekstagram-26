@@ -23,3 +23,4 @@ const isEscapeKey = (evt) => evt.key === 'Escape';
 const isEnterKey = (evt) => evt.key === 'Enter';
 
 export {isLengthCorrect, getRandomPositiveInteger, getRandomArrayElement, isEscapeKey, isEnterKey};
+

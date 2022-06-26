@@ -25,4 +25,3 @@ const createThumbnails = (dataObjects) => {
 };
 
 export {createThumbnails};
-
