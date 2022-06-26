@@ -18,4 +18,8 @@ const getRandomPositiveInteger = (a, b) => {
 // функция случайного элемента из массива
 const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0, elements.length-1)];
 
-export {isLengthCorrect, getRandomPositiveInteger, getRandomArrayElement};
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+const isEnterKey = (evt) => evt.key === 'Enter';
+
+export {isLengthCorrect, getRandomPositiveInteger, getRandomArrayElement, isEscapeKey, isEnterKey};
