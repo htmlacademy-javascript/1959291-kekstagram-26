@@ -13,12 +13,12 @@ const showBigImage = (data) => {
   };
 
   // функция открытия большого фото
-  const openBigPicture = () => {
+  function openBigPicture () {
     bigPicture.classList.remove('hidden');
     document.body.classList.add('modal-open');
     // добавляем отслеживание нажатия кнопки Esc
     document.addEventListener('keydown', onBigPictureEscKeydown);
-  };
+  }
 
   // открываем большое фото
   openBigPicture();
@@ -32,14 +32,14 @@ const showBigImage = (data) => {
   };
 
   // функция закрытия большого фото
-  const closeBigPicture = () => {
+  function closeBigPicture () {
     bigPicture.classList.add('hidden');
     document.body.classList.remove('modal-open');
     // убираем отслеживание нажатия кнопки Esc
     document.removeEventListener('keydown', onBigPictureEscKeydown);
     // очищаем комментарии при закрытии окна
     clearSocialCommentsContainer();
-  };
+  }
 
   // Действия для кнопки закрытия большого фото
   const bigPictureCancelButton = bigPicture.querySelector('.big-picture__cancel');
