@@ -1,10 +1,52 @@
+import { isEscapeKey } from './util.js';
+
 const showBigImage = (data) => {
   // ищем блок большого фото и показываем его на экране
   const bigPicture = document.querySelector('.big-picture');
-  bigPicture.classList.remove('hidden');
 
-  // задание 7-3 часть 4
-  document.body.classList.add('modal-open');
+  // функция действий при нажатии кнопки Esc
+  const onBigPictureEscKeydown = (evt) => {
+    if (isEscapeKey(evt)) {
+      evt.preventDefault();
+      closeBigPicture();
+    }
+  };
+
+  // функция открытия большого фото
+  const openBigPicture = () => {
+    bigPicture.classList.remove('hidden');
+    document.body.classList.add('modal-open');
+    // добавляем отслеживание нажатия кнопки Esc
+    document.addEventListener('keydown', onBigPictureEscKeydown);
+  };
+
+  // открываем большое фото
+  openBigPicture();
+
+  // ищем контейнер для комментариев .social__comments
+  const socialCommentsContainer = bigPicture.querySelector('.social__comments');
+
+  // функция очистки контейнера комментариев
+  const clearSocialCommentsContainer = () => {
+    socialCommentsContainer.innerHTML = '';
+  };
+
+  // функция закрытия большого фото
+  const closeBigPicture = () => {
+    bigPicture.classList.add('hidden');
+    document.body.classList.remove('modal-open');
+    // убираем отслеживание нажатия кнопки Esc
+    document.removeEventListener('keydown', onBigPictureEscKeydown);
+    // очищаем комментарии при закрытии окна
+    clearSocialCommentsContainer();
+  };
+
+  // Действия для кнопки закрытия большого фото
+  const bigPictureCancelButton = bigPicture.querySelector('.big-picture__cancel');
+
+  bigPictureCancelButton.addEventListener('click', () => {
+    closeBigPicture();
+  });
 
   // ищем тег img в блоке .big-picture__img
   const bigPictureImg = bigPicture.querySelector('.big-picture__img')
@@ -35,11 +77,8 @@ const showBigImage = (data) => {
   // заполняем данные comments-count
   commentCount.textContent = data.comments.length;
 
-  // ищем контейнер для комментариев .social__comments
-  const socialCommentsContainer = bigPicture.querySelector('.social__comments');
-
   // очищаем содержимое контейнера
-  socialCommentsContainer.innerHTML = '';
+  clearSocialCommentsContainer();
 
   // ищем шаблон и блок для вставки
   const socialCommentTemplate = document.querySelector('#comment')
@@ -66,21 +105,6 @@ const showBigImage = (data) => {
 
   const commentsLoader = bigPicture.querySelector('.comments-loader');
   commentsLoader.classList.add('hidden');
-
-  // задание 7-3 часть 5
-  const bigPictureCancelButton = bigPicture.querySelector('.big-picture__cancel');
-
-  bigPictureCancelButton.addEventListener('click', () => {
-    bigPicture.classList.add('hidden');
-    document.body.classList.remove('modal-open');
-  });
-
-  document.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') {
-      bigPicture.classList.add('hidden');
-      document.body.classList.remove('modal-open');
-    }
-  });
 };
 
 export {showBigImage};
