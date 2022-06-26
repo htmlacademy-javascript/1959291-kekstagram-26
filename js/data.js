@@ -1,5 +1,4 @@
-import {getRandomArrayElement} from './util.js';
-import {getRandomPositiveInteger} from './util.js';
+import {getRandomPositiveInteger, getRandomArrayElement} from './util.js';
 
 const NAMES = [
   'Шерлок',
@@ -66,7 +65,7 @@ const MINIMUM_LIKES = 15;
 const MAXIMUM_LIKES = 200;
 const MINIMUM_AVATAR_NUMBER = 1;
 const MAXIMUM_AVATAR_NUMBER = 6;
-const MAXIMUM_COMMENTS_NUMBER = 4;
+const MAXIMUM_COMMENTS_NUMBER = 7;
 const MINIMUM_COMMENT_ID = 1;
 const MAXIMUM_COMMENT_ID = 2000;
 
@@ -106,7 +105,7 @@ const createObject = (i) => ({
   comments: Array.from({length: getRandomPositiveInteger(1, MAXIMUM_COMMENTS_NUMBER)}, createComment),
 });
 
-const createMyDataObjects = () => {
+const createData = () => {
   const myDataObjects = [];
 
   for (let i = 0; i < OBJECT_COUNT; i++) {
@@ -117,4 +116,4 @@ const createMyDataObjects = () => {
   return (myDataObjects);
 };
 
-export {createMyDataObjects};
+export {createData};
