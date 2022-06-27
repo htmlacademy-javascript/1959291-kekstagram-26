@@ -107,5 +107,4 @@ const showBigImage = (data) => {
   commentsLoader.classList.add('hidden');
 };
 
-
-export {showBigImage};
+export { showBigImage };

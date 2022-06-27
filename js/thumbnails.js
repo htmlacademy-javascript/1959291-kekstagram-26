@@ -15,7 +15,6 @@ const createThumbnails = (dataObjects) => {
   dataObjects.forEach(({url, likes, comments, description}) => {
     const photoElement = otherUserPicturesTemplate.cloneNode(true);
     photoElement.querySelector('.picture__img').src = url;
-    // используем название в качестве  alt (нет в задании)
     photoElement.querySelector('.picture__img').alt = description;
     photoElement.querySelector('.picture__likes').textContent = likes;
     photoElement.querySelector('.picture__comments').textContent = comments.length;
