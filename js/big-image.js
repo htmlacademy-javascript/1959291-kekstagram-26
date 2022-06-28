@@ -1,8 +1,14 @@
 import { isEscapeKey } from './util.js';
 
-const showBigImage = (data) => {
-  // ищем блок большого фото и показываем его на экране
-  const bigPicture = document.querySelector('.big-picture');
+// ищем блок большого фото
+const bigPicture = document.querySelector('.big-picture');
+
+// ищем шаблон и блок для вставки
+const socialCommentTemplate = document.querySelector('#comment')
+  .content
+  .querySelector('.social__comment');
+
+const showBigImage = (dataObject) => {
 
   // функция действий при нажатии кнопки Esc
   const onBigPictureEscKeydown = (evt) => {
@@ -13,15 +19,12 @@ const showBigImage = (data) => {
   };
 
   // функция открытия большого фото
-  function openBigPicture () {
+  const openBigPicture = () => {
     bigPicture.classList.remove('hidden');
     document.body.classList.add('modal-open');
     // добавляем отслеживание нажатия кнопки Esc
     document.addEventListener('keydown', onBigPictureEscKeydown);
-  }
-
-  // открываем большое фото
-  openBigPicture();
+  };
 
   // ищем контейнер для комментариев .social__comments
   const socialCommentsContainer = bigPicture.querySelector('.social__comments');
@@ -53,42 +56,37 @@ const showBigImage = (data) => {
     .querySelector('img');
 
   // заполняем для фото src и alt
-  bigPictureImg.src = data.url;
-  bigPictureImg.alt = data.description;
+  bigPictureImg.src = dataObject.url;
+  bigPictureImg.alt = dataObject.description;
 
   // ищем .social__caption в блоке .big-picture__img
   const socialCaption = bigPicture.querySelector('.big-picture__social')
     .querySelector('.social__caption');
 
   // заполняем данные social__caption
-  socialCaption.textContent = data.description;
+  socialCaption.textContent = dataObject.description;
 
   // ищем .likes-count в блоке .big-picture__img
   const likeCount = bigPicture.querySelector('.big-picture__social')
     .querySelector('.likes-count');
 
   // заполняем данные social__likes
-  likeCount.textContent = data.likes;
+  likeCount.textContent = dataObject.likes;
 
   // ищем .comments-count в блоке .social__comment-count
   const commentCount = bigPicture.querySelector('.social__comment-count')
     .querySelector('.comments-count');
 
   // заполняем данные comments-count
-  commentCount.textContent = data.comments.length;
+  commentCount.textContent = dataObject.comments.length;
 
   // очищаем содержимое контейнера
   clearSocialCommentsContainer();
 
-  // ищем шаблон и блок для вставки
-  const socialCommentTemplate = document.querySelector('#comment')
-    .content
-    .querySelector('.social__comment');
-
   // создаем фрагмент для наполнения
   const socialCommentFragment = document.createDocumentFragment();
 
-  data.comments.forEach(({avatar, name, message}) => {
+  dataObject.comments.forEach(({avatar, name, message}) => {
     const commentElement = socialCommentTemplate.cloneNode(true);
     commentElement.querySelector('img').src = avatar;
     commentElement.querySelector('img').alt = name;
@@ -105,6 +103,9 @@ const showBigImage = (data) => {
 
   const commentsLoader = bigPicture.querySelector('.comments-loader');
   commentsLoader.classList.add('hidden');
+
+  // открываем большое фото
+  openBigPicture();
 };
 
 export { showBigImage };
