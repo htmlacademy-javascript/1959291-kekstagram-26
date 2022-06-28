@@ -8,56 +8,9 @@ const socialCommentTemplate = document.querySelector('#comment')
   .content
   .querySelector('.social__comment');
 
-const showBigImage = (dataObject) => {
-
-  // функция действий при нажатии кнопки Esc
-  const onBigPictureEscKeydown = (evt) => {
-    if (isEscapeKey(evt)) {
-      evt.preventDefault();
-      closeBigPicture();
-    }
-  };
-
-  // функция открытия большого фото
-  const openBigPicture = () => {
-    bigPicture.classList.remove('hidden');
-    document.body.classList.add('modal-open');
-    // добавляем отслеживание нажатия кнопки Esc
-    document.addEventListener('keydown', onBigPictureEscKeydown);
-  };
-
+const showBigPictureComments = (dataObject) => {
   // ищем контейнер для комментариев .social__comments
   const socialCommentsContainer = bigPicture.querySelector('.social__comments');
-
-  // функция очистки контейнера комментариев
-  const clearSocialCommentsContainer = () => {
-    socialCommentsContainer.innerHTML = '';
-  };
-
-  // функция закрытия большого фото
-  function closeBigPicture () {
-    bigPicture.classList.add('hidden');
-    document.body.classList.remove('modal-open');
-    // убираем отслеживание нажатия кнопки Esc
-    document.removeEventListener('keydown', onBigPictureEscKeydown);
-    // очищаем комментарии при закрытии окна
-    clearSocialCommentsContainer();
-  }
-
-  // Действия для кнопки закрытия большого фото
-  const bigPictureCancelButton = bigPicture.querySelector('.big-picture__cancel');
-
-  bigPictureCancelButton.addEventListener('click', () => {
-    closeBigPicture();
-  });
-
-  // ищем тег img в блоке .big-picture__img
-  const bigPictureImg = bigPicture.querySelector('.big-picture__img')
-    .querySelector('img');
-
-  // заполняем для фото src и alt
-  bigPictureImg.src = dataObject.url;
-  bigPictureImg.alt = dataObject.description;
 
   // ищем .social__caption в блоке .big-picture__img
   const socialCaption = bigPicture.querySelector('.big-picture__social')
@@ -103,9 +56,52 @@ const showBigImage = (dataObject) => {
 
   const commentsLoader = bigPicture.querySelector('.comments-loader');
   commentsLoader.classList.add('hidden');
+};
+
+const showBigImage = (dataObject) => {
+  // функция действий при нажатии кнопки Esc
+  const onBigPictureEscKeydown = (evt) => {
+    if (isEscapeKey(evt)) {
+      evt.preventDefault();
+      closeBigPicture();
+    }
+  };
+
+  // функция открытия большого фото
+  const openBigPicture = () => {
+    bigPicture.classList.remove('hidden');
+    document.body.classList.add('modal-open');
+    // добавляем отслеживание нажатия кнопки Esc
+    document.addEventListener('keydown', onBigPictureEscKeydown);
+  };
+
+  // функция закрытия большого фото
+  function closeBigPicture () {
+    bigPicture.classList.add('hidden');
+    document.body.classList.remove('modal-open');
+    // убираем отслеживание нажатия кнопки Esc
+    document.removeEventListener('keydown', onBigPictureEscKeydown);
+    // очищаем комментарии при закрытии окна
+    clearSocialCommentsContainer();
+  }
+
+  // Действия для кнопки закрытия большого фото
+  const bigPictureCancelButton = bigPicture.querySelector('.big-picture__cancel');
+
+  bigPictureCancelButton.addEventListener('click', () => {
+    closeBigPicture();
+  });
+
+  // ищем тег img в блоке .big-picture__img
+  const bigPictureImg = bigPicture.querySelector('.big-picture__img')
+    .querySelector('img');
+
+  // заполняем для фото src и alt
+  bigPictureImg.src = dataObject.url;
+  bigPictureImg.alt = dataObject.description;
 
   // открываем большое фото
   openBigPicture();
 };
 
-export { showBigImage };
+export { showBigImage, showBigPictureComments };
