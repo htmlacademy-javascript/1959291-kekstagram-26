@@ -1,14 +1,14 @@
 import { showBigImage } from './big-image.js';
 
+// ищем блок для вставки изображений
+const otherUserPictures = document.querySelector('.pictures');
+
+// ищем шаблон и блок для вставки
+const otherUserPicturesTemplate = document.querySelector('#picture')
+  .content
+  .querySelector('.picture');
+
 const createThumbnail = (dataObject) => {
-  // ищем блок для вставки изображений
-  const otherUserPictures = document.querySelector('.pictures');
-
-  // ищем шаблон и блок для вставки
-  const otherUserPicturesTemplate = document.querySelector('#picture')
-    .content
-    .querySelector('.picture');
-
   // создаем фрагмент для наполнения
   const dataObjectsFragment = document.createDocumentFragment();
 
