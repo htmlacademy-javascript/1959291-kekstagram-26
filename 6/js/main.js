@@ -1,12 +1,11 @@
 import { createData } from './data.js';
-import { createThumbnails } from './thumbnails.js';
-import { renderGallery } from './gallery.js';
+import { createThumbnail } from './thumbnails.js';
 
 // генерируем данные
 const serverData = createData();
 
 // добавляем данные на страницу
-createThumbnails(serverData);
+for (let i = 0; i < serverData.length; i++) {
+  createThumbnail(serverData[i]);
+}
 
-// добавляем возможность показать большую картинку
-renderGallery(serverData);
