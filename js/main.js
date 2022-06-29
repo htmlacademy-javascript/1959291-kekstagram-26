@@ -1,8 +1,11 @@
-import {createData} from './data.js';
-import {createThumbnails} from './thumbnails.js';
+import { createData } from './data.js';
+import { createThumbnail } from './thumbnails.js';
 
 // генерируем данные
-const inputData = createData();
+const serverData = createData();
 
 // добавляем данные на страницу
-createThumbnails(inputData);
+for (let i = 0; i < serverData.length; i++) {
+  createThumbnail(serverData[i]);
+}
+

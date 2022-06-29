@@ -1,4 +1,4 @@
-import {getRandomPositiveInteger, getRandomArrayElement} from './util.js';
+import { getRandomPositiveInteger, getRandomArrayElement } from './util.js';
 
 const NAMES = [
   'Шерлок',
@@ -116,4 +116,5 @@ const createData = () => {
   return (myDataObjects);
 };
 
-export {createData};
+
+export { createData };
