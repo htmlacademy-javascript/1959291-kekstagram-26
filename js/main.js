@@ -8,3 +8,4 @@ const serverData = createData();
 for (let i = 0; i < serverData.length; i++) {
   createThumbnail(serverData[i]);
 }
+

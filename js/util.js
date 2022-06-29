@@ -16,7 +16,12 @@ const getRandomPositiveInteger = (a, b) => {
 };
 
 // функция случайного элемента из массива
-const getRandomArrayElement = (elements) => elements[getRandomPositiveInteger(0, elements.length-1)];
+const getRandomArrayElement = (array) => array[getRandomPositiveInteger(0, array.length-1)];
+
+// функция очистки
+const clearContainer = (container) =>  {
+  container.innerHTML = '';
+};
 
 // функция проверки нажатой кнопки Escape
 const isEscapeKey = (evt) => evt.key === 'Escape';
@@ -24,5 +29,5 @@ const isEscapeKey = (evt) => evt.key === 'Escape';
 // функция проверки нажатой кнопки Enter
 const isEnterKey = (evt) => evt.key === 'Enter';
 
-export { isLengthCorrect, getRandomPositiveInteger, getRandomArrayElement, isEscapeKey, isEnterKey };
+export { isLengthCorrect, getRandomPositiveInteger, getRandomArrayElement, clearContainer, isEscapeKey, isEnterKey };
 
