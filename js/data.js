@@ -65,6 +65,7 @@ const MINIMUM_LIKES = 15;
 const MAXIMUM_LIKES = 200;
 const MINIMUM_AVATAR_NUMBER = 1;
 const MAXIMUM_AVATAR_NUMBER = 6;
+const MINIMUM_COMMENTS_NUMBER = 1;
 const MAXIMUM_COMMENTS_NUMBER = 7;
 const MINIMUM_COMMENT_ID = 1;
 const MAXIMUM_COMMENT_ID = 2000;
@@ -79,8 +80,8 @@ const createUniqueCommentId = (arrayLength, a, b) => {
   while (uniqueCommentId.length < arrayLength) {
 
     /* наполняем массив случайными числами, в диапазоне допустимом для для COMMENT_ID
-  (в два раза длиннее чем нам необходим - для того, чтобы нам хватило чисел для уникального массива после удаления повторяющихся)
-  */
+    (в два раза длиннее чем нам необходим - для того, чтобы нам хватило чисел для уникального массива после удаления повторяющихся)
+    */
     for (let i = 0; i <= arrayLength*2; i++) {
       randomArray[i] = getRandomPositiveInteger(a, b);
     }
@@ -102,10 +103,10 @@ const createObject = (i) => ({
   url: `photos/${  i  }.jpg`,
   description: DESCRIPTIONS[i-1],
   likes: getRandomPositiveInteger(MINIMUM_LIKES, MAXIMUM_LIKES),
-  comments: Array.from({length: getRandomPositiveInteger(1, MAXIMUM_COMMENTS_NUMBER)}, createComment),
+  comments: Array.from({length: getRandomPositiveInteger(MINIMUM_COMMENTS_NUMBER, MAXIMUM_COMMENTS_NUMBER)}, createComment),
 });
 
-const createData = () => {
+const createDataObjects = () => {
   const myDataObjects = [];
 
   for (let i = 0; i < OBJECT_COUNT; i++) {
@@ -117,4 +118,4 @@ const createData = () => {
 };
 
 
-export { createData };
+export { createDataObjects };
