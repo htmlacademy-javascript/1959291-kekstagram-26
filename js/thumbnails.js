@@ -1,7 +1,6 @@
 import { showBigImage } from './big-image.js';
 import { renderComments } from './comments.js';
 
-
 // ищем блок для вставки изображений
 const otherUserPictures = document.querySelector('.pictures');
 
@@ -33,4 +32,10 @@ const createThumbnail = (dataObject) => {
   });
 };
 
-export { createThumbnail };
+const createThumbnails = (dataObjects) => {
+  for (let i = 0; i < dataObjects.length; i++) {
+    createThumbnail(dataObjects[i]);
+  }
+};
+
+export { createThumbnails };
