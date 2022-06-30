@@ -1,7 +1,6 @@
 // функция проверки длины строки
-function isLengthCorrect(str, maxStrLength) {
-  return (str.length <= maxStrLength);
-}
+const MAX_LENGTH = 140;
+const isLengthCorrect = (str) => str.length <= MAX_LENGTH;
 
 // https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/Math/random
 // функция случайного целого числа из диапазона
