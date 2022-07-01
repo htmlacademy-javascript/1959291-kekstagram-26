@@ -13,15 +13,15 @@ const socialCommentsList = bigPictureSocialContainer.querySelector('.social__com
 const commentsLoaderElement = bigPictureSocialContainer.querySelector('.comments-loader');
 
 // функция генерации комментариев из данных
-const renderComments = (dataObject) => {
+const renderComments = (data) => {
   // заполняем данные social__caption
-  socialCaptionElement.textContent = dataObject.description;
+  socialCaptionElement.textContent = data.description;
 
   // заполняем данные likes-count
-  likesCountElement.textContent = dataObject.likes;
+  likesCountElement.textContent = data.likes;
 
   // заполняем данные comments-count
-  commentCount.textContent = dataObject.comments.length;
+  commentCount.textContent = data.comments.length;
 
   // очищаем содержимое socialComments
   clearContainer(socialCommentsList);
@@ -29,7 +29,7 @@ const renderComments = (dataObject) => {
   // создаем фрагмент для наполнения
   const socialCommentFragment = document.createDocumentFragment();
 
-  dataObject.comments.forEach(({avatar, name, message}) => {
+  data.comments.forEach(({avatar, name, message}) => {
     const commentElement = socialCommentTemplate.cloneNode(true);
     commentElement.querySelector('img').src = avatar;
     commentElement.querySelector('img').alt = name;
