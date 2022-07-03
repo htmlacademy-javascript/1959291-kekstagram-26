@@ -697,6 +697,11 @@ main {
   border-radius: 5px;
 }
 
+.img-upload__error {
+  padding: 15px 10px;
+  color: #ffffff;
+  background-color: #000000;
+}
 
 /**
  * Кнопка для отправки изображения

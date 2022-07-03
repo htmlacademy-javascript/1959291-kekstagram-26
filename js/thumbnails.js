@@ -1,36 +1,41 @@
 import { showBigImage } from './big-image.js';
 import { renderComments } from './comments.js';
 
-
 // ищем блок для вставки изображений
-const otherUserPictures = document.querySelector('.pictures');
+const picturesContainer = document.querySelector('.pictures');
 
 // ищем шаблон и блок для вставки
-const otherUserPicturesTemplate = document.querySelector('#picture')
+const picturesTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
-const createThumbnail = (dataObject) => {
+const createThumbnail = (data) => {
   // создаем фрагмент для наполнения
-  const dataObjectsFragment = document.createDocumentFragment();
+  const dataFragment = document.createDocumentFragment();
 
   // наполнение фрагмента данными
-  const photoElement = otherUserPicturesTemplate.cloneNode(true);
-  photoElement.querySelector('.picture__img').src = dataObject.url;
-  photoElement.querySelector('.picture__img').alt = dataObject.description;
-  photoElement.querySelector('.picture__likes').textContent = dataObject.likes;
-  photoElement.querySelector('.picture__comments').textContent = dataObject.comments.length;
-  dataObjectsFragment.appendChild(photoElement);
+  const photoElement = picturesTemplate.cloneNode(true);
+  photoElement.querySelector('.picture__img').src = data.url;
+  photoElement.querySelector('.picture__img').alt = data.description;
+  photoElement.querySelector('.picture__likes').textContent = data.likes;
+  photoElement.querySelector('.picture__comments').textContent = data.comments.length;
+  dataFragment.appendChild(photoElement);
 
   // добавляем фрагмент в блок
-  otherUserPictures.appendChild(dataObjectsFragment);
+  picturesContainer.appendChild(dataFragment);
 
   // действие по клику на картинку
   photoElement.addEventListener('click', (evt) => {
     evt.preventDefault();
-    renderComments(dataObject);
-    showBigImage(dataObject);
+    renderComments(data);
+    showBigImage(data);
   });
 };
 
-export { createThumbnail };
+const createThumbnails = (data) => {
+  for (let i = 0; i < data.length; i++) {
+    createThumbnail(data[i]);
+  }
+};
+
+export { createThumbnails };

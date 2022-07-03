@@ -1,11 +1,16 @@
-import { createData } from './data.js';
-import { createThumbnail } from './thumbnails.js';
+import { createDataObjects } from './data.js';
+import { createThumbnails } from './thumbnails.js';
+import { addFormChangeHandler } from './form.js';
+import { addFormValidation } from './form-validation.js';
 
 // генерируем данные
-const serverData = createData();
+const serverData = createDataObjects();
 
 // добавляем данные на страницу
-for (let i = 0; i < serverData.length; i++) {
-  createThumbnail(serverData[i]);
-}
+createThumbnails(serverData);
 
+// добавляем отслеживание изменения состояния ввода данных (открытие формы при изменении)
+addFormChangeHandler();
+
+// добавляем валидацию формы
+addFormValidation();
