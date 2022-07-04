@@ -5,6 +5,12 @@ import { imgUploadForm } from './form.js';
 const textHashtagElement = imgUploadForm.querySelector('.text__hashtags');
 const textDescriptionElement = imgUploadForm.querySelector('.text__description');
 
+// максимальное число хештегов
+const MAX_TAGS = 5;
+
+// регулярное выражение для проверки хештега
+const HASHTAG_REGEX = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
+
 // функция действий при нажатии кнопки Esc в поле ввода
 const onInputEscKeydown = (evt) => {
   if (isEscapeKey(evt)) {
@@ -18,9 +24,6 @@ const onInputEscKeydown = (evt) => {
 textHashtagElement.addEventListener('keydown', onInputEscKeydown);
 textDescriptionElement.addEventListener('keydown', onInputEscKeydown);
 
-// регулярное выражение для проверки хештега
-const HASHTAG_REGEX = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
-
 const addFormValidation = () =>{
   // проверка 1 - теги начинаются с символа # и состоят из допустимых символов, длина не превышает 20 символов
   const isHashTagsCorrect = (data) => {
@@ -33,7 +36,6 @@ const addFormValidation = () =>{
   };
 
   // проверка 2 - не более 5 тэгов
-  const MAX_TAGS = 5;
   const isHashTagsNumberCorrect = (data) => {
     const tagsArray = data.split(' ');
     return(tagsArray.length <= MAX_TAGS);
@@ -77,7 +79,6 @@ const addFormValidation = () =>{
     'все хештеги должны быть уникальными'
   );
 
-  // или это просто прописать в maxlength у поля?
   pristine.addValidator(
     textDescriptionElement,
     isLengthCorrect,
