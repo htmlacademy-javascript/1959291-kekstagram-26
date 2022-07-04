@@ -13,6 +13,9 @@ const socialCommentsListElement = bigPictureSocialContainer.querySelector('.soci
 const commentsLoaderButton = bigPictureSocialContainer.querySelector('.comments-loader');
 const commentsCountShownElement = socialCommentCountElement.querySelector('.comments-count-shown');
 
+// сколько комментариев показать за нажатие кнопки
+const COMMENTS_TO_SHOW = 5;
+
 // функция генерации комментария из данных
 const renderComment = (comment) => {
   // создаем фрагмент для наполнения
@@ -45,8 +48,6 @@ const showComments = () => {
 
   // начальное число показанных комментариев
   let commentsShown = 0;
-  // сколько комментариев показать за нажатие кнопки
-  const COMMENTS_TO_SHOW = 5;
 
   const showHiddenComments = () => {
     for (let i = 0; i < COMMENTS_TO_SHOW; i++) {
