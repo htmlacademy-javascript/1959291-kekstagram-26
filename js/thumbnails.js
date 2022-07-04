@@ -1,5 +1,5 @@
 import { showBigImage } from './big-image.js';
-import { renderComments } from './comments.js';
+import { renderCommentsArea } from './comments.js';
 
 // ищем блок для вставки изображений
 const picturesContainer = document.querySelector('.pictures');
@@ -27,7 +27,7 @@ const createThumbnail = (data) => {
   // действие по клику на картинку
   photoElement.addEventListener('click', (evt) => {
     evt.preventDefault();
-    renderComments(data);
+    renderCommentsArea(data);
     showBigImage(data);
   });
 };
