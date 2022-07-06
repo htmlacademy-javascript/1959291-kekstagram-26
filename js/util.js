@@ -51,7 +51,7 @@ const showAlert = (message) => {
   setTimeout(() => {
     alertElement.remove();
   }, ALERT_SHOW_TIME);
-}
+};
 
 export { isLengthCorrect, getRandomPositiveInteger, getRandomArrayElement, clearContainer, isEscapeKey, isEnterKey, showAlert };
 

@@ -9,13 +9,13 @@ const submitButtonElement = imgUploadForm.querySelector('.img-upload__submit');
 
 // ищем шаблон и блок для сообщения когда отправка данных прошла успешно
 const successTemplate = document.querySelector('#success')
-.content
-.querySelector('.success');
+  .content
+  .querySelector('.success');
 
 // ищем шаблон и блок для сообщения когда при отправке данных произошла ошибка запроса
 const errorTemplate = document.querySelector('#error')
-.content
-.querySelector('.error');
+  .content
+  .querySelector('.error');
 
 // максимальное число хештегов
 const MAX_TAGS = 5;
@@ -97,100 +97,99 @@ const addFormValidation = () =>{
     'комментарий должен быть не более 140 символов'
   );
 
-// *******************************************************************************
+  // *******************************************************************************
 
-let successMessageElement, successButtonElement, errorMessageElement, errorButtonElement;
+  let successMessageElement, successButtonElement, errorMessageElement, errorButtonElement;
 
-// функция убирает сообщение
-let removeSuccessMessage = () => {};
-let removeErrorMessage = () => {};
+  // функция убирает сообщение
+  let removeSuccessMessage = () => {};
+  let removeErrorMessage = () => {};
 
-// функция блокировки кнопки формы
-const blockSubmitButton = () => {
-  submitButtonElement.disabled = true;
-  submitButtonElement.textContent = 'Публикую...';
-};
+  // функция блокировки кнопки формы
+  const blockSubmitButton = () => {
+    submitButtonElement.disabled = true;
+    submitButtonElement.textContent = 'Публикую...';
+  };
 
-// функция снятия блокировки кнопки формы
-const unblockSubmitButton = () => {
-  submitButtonElement.disabled = false;
-  submitButtonElement.textContent = 'Опубликовать';
-};
+  // функция снятия блокировки кнопки формы
+  const unblockSubmitButton = () => {
+    submitButtonElement.disabled = false;
+    submitButtonElement.textContent = 'Опубликовать';
+  };
 
-// функция действий при нажатии кнопки Esc
-const onSuccessMessageEscKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
-    removeSuccessMessage();
-  }
-};
-const onErrorMessageEscKeydown = (evt) => {
-  if (isEscapeKey(evt)) {
-    removeErrorMessage();
-  }
-};
+  // функция действий при нажатии кнопки Esc
+  const onSuccessMessageEscKeydown = (evt) => {
+    if (isEscapeKey(evt)) {
+      removeSuccessMessage();
+    }
+  };
+  const onErrorMessageEscKeydown = (evt) => {
+    if (isEscapeKey(evt)) {
+      removeErrorMessage();
+    }
+  };
 
-const createSuccessMessage = () => {
+  const createSuccessMessage = () => {
   // создаем фрагмент для наполнения
-  const dataFragment = document.createDocumentFragment();
-  successMessageElement = successTemplate.cloneNode(true);
-  dataFragment.appendChild(successMessageElement);
-  document.body.appendChild(dataFragment);
-  // кнопка в сообщении
-  successButtonElement = successMessageElement.querySelector('.success__button');
-}
+    const dataFragment = document.createDocumentFragment();
+    successMessageElement = successTemplate.cloneNode(true);
+    dataFragment.appendChild(successMessageElement);
+    document.body.appendChild(dataFragment);
+    // кнопка в сообщении
+    successButtonElement = successMessageElement.querySelector('.success__button');
+  };
 
-const createErrorMessage = () => {
-  const dataFragment = document.createDocumentFragment();
-  errorMessageElement = errorTemplate.cloneNode(true);
-  dataFragment.appendChild(errorMessageElement);
-  document.body.appendChild(dataFragment);
-  errorButtonElement = errorMessageElement.querySelector('.error__button');
-}
+  const createErrorMessage = () => {
+    const dataFragment = document.createDocumentFragment();
+    errorMessageElement = errorTemplate.cloneNode(true);
+    dataFragment.appendChild(errorMessageElement);
+    document.body.appendChild(dataFragment);
+    errorButtonElement = errorMessageElement.querySelector('.error__button');
+  };
 
-// функция действий при клике вне окна
-const onSuccessMessageClick = (evt) => {
-  if (evt.target === successMessageElement) {
-    removeSuccessMessage();
-  }
-};
-const onErrorMessageClick = (evt) => {
-  if (evt.target === errorMessageElement) {
-    removeErrorMessage();
-  }
-};
+  // функция действий при клике вне окна
+  const onSuccessMessageClick = (evt) => {
+    if (evt.target === successMessageElement) {
+      removeSuccessMessage();
+    }
+  };
+  const onErrorMessageClick = (evt) => {
+    if (evt.target === errorMessageElement) {
+      removeErrorMessage();
+    }
+  };
 
-const addEventListenerToSuccessMessage = () => {
+  const addEventListenerToSuccessMessage = () => {
   // добавляем отслеживание клика по кнопке
-  successButtonElement.addEventListener('click', removeSuccessMessage);
-  // добавляем отслеживание клика не по сообщению
-  successMessageElement.addEventListener('click', onSuccessMessageClick);
-  // добавляем отслеживание нажатия кнопки Esc
-  document.addEventListener('keydown', onSuccessMessageEscKeydown);
-};
+    successButtonElement.addEventListener('click', removeSuccessMessage);
+    // добавляем отслеживание клика не по сообщению
+    successMessageElement.addEventListener('click', onSuccessMessageClick);
+    // добавляем отслеживание нажатия кнопки Esc
+    document.addEventListener('keydown', onSuccessMessageEscKeydown);
+  };
 
-const addEventListenerToErrorMessage = () => {
-  errorButtonElement.addEventListener('click', removeErrorMessage);
-  errorMessageElement.addEventListener('click', onErrorMessageClick);
-  document.addEventListener('keydown', onErrorMessageEscKeydown);
-};
+  const addEventListenerToErrorMessage = () => {
+    errorButtonElement.addEventListener('click', removeErrorMessage);
+    errorMessageElement.addEventListener('click', onErrorMessageClick);
+    document.addEventListener('keydown', onErrorMessageEscKeydown);
+  };
 
-// функция убирает сообщение
-removeSuccessMessage = () => {
-  successMessageElement.remove();
-  document.removeEventListener('keydown', onSuccessMessageEscKeydown);
-};
-removeErrorMessage = () => {
-  errorMessageElement.remove();
-  document.removeEventListener('keydown', onErrorMessageEscKeydown);
-};
+  // функция убирает сообщение
+  removeSuccessMessage = () => {
+    successMessageElement.remove();
+    document.removeEventListener('keydown', onSuccessMessageEscKeydown);
+  };
+  removeErrorMessage = () => {
+    errorMessageElement.remove();
+    document.removeEventListener('keydown', onErrorMessageEscKeydown);
+  };
 
-imgUploadForm.addEventListener('submit', (evt) => {
+  imgUploadForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
     if (pristine.validate()) {
       blockSubmitButton();
       sendData(
         () => {
-          console.log('отправил успешно')
           unblockSubmitButton();
           closeImgUploadOverlay();
           createSuccessMessage();

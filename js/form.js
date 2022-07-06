@@ -30,7 +30,6 @@ const onUploadCancelButtonClick = () => {
 
 // функция открытия формы загрузки изображения
 openImgUploadOverlay = () => {
-  debugger;
   imgUploadOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
   // добавляем отслеживание нажатия кнопки Esc к документу
@@ -48,7 +47,7 @@ const hideImgUploadOverlay = () => {
   imgUploadOverlay.classList.add('hidden');
   /* очищаю поле загрузки изображения, чтобы при попытке загрузить
   то-же самое изображение форма снова открылась */
-  uploadFileElement.value = "";
+  uploadFileElement.value = '';
   document.body.classList.remove('modal-open');
   // убираем отслеживание нажатия кнопки Esc
   document.removeEventListener('keydown', onImgUploadFormEscKeydown);
