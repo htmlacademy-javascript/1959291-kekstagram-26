@@ -167,4 +167,4 @@ const addPreviewFunctional = () => {
   addPreviewEffects();
 };
 
-export { addPreviewFunctional , hideSlider };
+export { imgUploadPreviewElement, addPreviewFunctional , hideSlider };

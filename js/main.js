@@ -1,14 +1,18 @@
-import { createDataObjects } from './data.js';
+import { getData } from './api.js';
 import { createThumbnails } from './thumbnails.js';
 import { addFormChangeHandler } from './form.js';
+import { addPreviewFunctional } from './form-picture.js';
 import { addFormValidation } from './form-validation.js';
-import { addPreviewFunctional  } from './form-picture.js';
+import { showAlert } from './util.js';
 
-// генерируем данные
-const serverData = createDataObjects();
-
-// добавляем данные на страницу
-createThumbnails(serverData);
+getData(
+  (serverData) => {
+    createThumbnails(serverData);
+  },
+  () => {
+    showAlert('Не удалось загрузить данные с сервера. Попробуйте позже');
+  }
+);
 
 // добавляем отслеживание изменения состояния ввода данных (открытие формы при изменении)
 addFormChangeHandler();
