@@ -1,5 +1,5 @@
 import { isEscapeKey } from './util.js';
-import '../pristine/pristine.min.js';
+import { hideSlider } from './form-picture.js';
 
 // поиск необходимых элементов на странице
 const imgUploadForm = document.querySelector('.img-upload__form');
@@ -32,6 +32,7 @@ const showImgUploadForm = () => {
     document.addEventListener('keydown', onImgUploadFormEscKeydown);
     // добавляем отслеживание кнопки закрытия формы загрузки
     uploadCancelButton.addEventListener('click', onUploadCancelButtonClick);
+    hideSlider();
   };
 
   // функция закрытия формы загрузки изображения
