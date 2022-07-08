@@ -2,6 +2,12 @@ import { isLengthCorrect, isEscapeKey } from './util.js';
 import { imgUploadForm, closeImgUploadOverlay, hideImgUploadOverlay } from './form.js';
 import { sendData } from './api.js';
 
+// максимальное число хештегов
+const MAX_TAGS = 5;
+
+// регулярное выражение для проверки хештега
+const HASHTAG_REGEX = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
+
 // необходимые элементы
 const textHashtagElement = imgUploadForm.querySelector('.text__hashtags');
 const textDescriptionElement = imgUploadForm.querySelector('.text__description');
@@ -16,12 +22,6 @@ const successTemplate = document.querySelector('#success')
 const errorTemplate = document.querySelector('#error')
   .content
   .querySelector('.error');
-
-// максимальное число хештегов
-const MAX_TAGS = 5;
-
-// регулярное выражение для проверки хештега
-const HASHTAG_REGEX = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
 
 // функция действий при нажатии кнопки Esc в поле ввода
 const onInputEscKeydown = (evt) => {
@@ -96,8 +96,6 @@ const addFormValidation = () =>{
     isLengthCorrect,
     'комментарий должен быть не более 140 символов'
   );
-
-  // *******************************************************************************
 
   let successMessageElement, successButtonElement, errorMessageElement, errorButtonElement;
 

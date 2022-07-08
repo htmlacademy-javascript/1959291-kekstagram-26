@@ -1,5 +1,8 @@
 import { clearContainer } from './util.js';
 
+// сколько комментариев показать за нажатие кнопки
+const COMMENTS_TO_SHOW = 5;
+
 // поиск необходимых элементов на странице
 const socialCommentTemplate = document.querySelector('#comment')
   .content
@@ -12,9 +15,6 @@ const commentsCountElement = socialCommentCountElement.querySelector('.comments-
 const socialCommentsListElement = bigPictureSocialContainer.querySelector('.social__comments');
 const commentsLoaderButton = bigPictureSocialContainer.querySelector('.comments-loader');
 const commentsCountShownElement = socialCommentCountElement.querySelector('.comments-count-shown');
-
-// сколько комментариев показать за нажатие кнопки
-const COMMENTS_TO_SHOW = 5;
 
 // функция генерации комментария из данных
 const renderComment = (comment) => {
