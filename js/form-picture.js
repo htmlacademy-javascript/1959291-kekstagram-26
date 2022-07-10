@@ -1,23 +1,8 @@
-// ************************ часть 2.1 Масштаб ***********************************************
-
-// необходимые элементы
-const imgUploadForm = document.querySelector('.img-upload__form');
-const scaleControlSmallerElement = imgUploadForm.querySelector('.scale__control--smaller');
-const scaleControlBiggerElement = imgUploadForm.querySelector('.scale__control--bigger');
-const scaleControlValueElement = imgUploadForm.querySelector('.scale__control--value');
-const imgUploadPreviewElement = imgUploadForm.querySelector('.img-upload__preview')
-  .querySelector('img');
+// константы
 const MIN_SCALE_VALUE = 25;
 const MAX_SCALE_VALUE = 100;
 const DEFAULT_SCALE_VALUE = 100;
 const SCALE_VALUE_STEP = 25;
-let scaleValue = DEFAULT_SCALE_VALUE;
-
-// ************************ часть 2.2 Наложение эффекта на изображение ***********************************************
-const effectLevelValueElement = imgUploadForm.querySelector('.effect-level__value');
-const effectsListElement = imgUploadForm.querySelector('.effects__list');
-const imgUploadEffectLevelElement = imgUploadForm.querySelector('.img-upload__effect-level');
-const effectLevelSliderElement = imgUploadForm.querySelector('.effect-level__slider');
 
 // состояния слайдера для всех эффектов
 const SLIDER_EFFECT_PARAMETERS = {
@@ -36,6 +21,21 @@ const FILTER_EFFECT_TYPES = {
   'phobos': 'blur',  /* filter: blur(0..3px)*/
   'heat': 'brightness', /* filter: brightness(1..3) */
 };
+
+// необходимые элементы
+const imgUploadForm = document.querySelector('.img-upload__form');
+const scaleControlSmallerElement = imgUploadForm.querySelector('.scale__control--smaller');
+const scaleControlBiggerElement = imgUploadForm.querySelector('.scale__control--bigger');
+const scaleControlValueElement = imgUploadForm.querySelector('.scale__control--value');
+const imgUploadPreviewElement = imgUploadForm.querySelector('.img-upload__preview')
+  .querySelector('img');
+let scaleValue = DEFAULT_SCALE_VALUE;
+
+// ************************ часть 2.2 Наложение эффекта на изображение ***********************************************
+const effectLevelValueElement = imgUploadForm.querySelector('.effect-level__value');
+const effectsListElement = imgUploadForm.querySelector('.effects__list');
+const imgUploadEffectLevelElement = imgUploadForm.querySelector('.img-upload__effect-level');
+const effectLevelSliderElement = imgUploadForm.querySelector('.effect-level__slider');
 
 // функция изменения свойств элементов
 const changeScale = () => {
@@ -167,4 +167,4 @@ const addPreviewFunctional = () => {
   addPreviewEffects();
 };
 
-export { addPreviewFunctional , hideSlider };
+export { imgUploadPreviewElement, addPreviewFunctional , hideSlider };
