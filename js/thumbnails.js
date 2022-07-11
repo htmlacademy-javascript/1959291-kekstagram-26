@@ -38,4 +38,4 @@ const createThumbnails = (data) => {
   }
 };
 
-export { createThumbnails };
+export { picturesContainer, createThumbnails };
