@@ -48,11 +48,11 @@ const addFilters = (data) => {
   const onImgFilterButtonClick = (evt) => {
     evt.preventDefault();
     if (!evt.target.classList.contains('img-filters__button--active')) {
-      imgFilterButtons.forEach((elem) => {
-        if ((elem !== evt.target) && (elem.classList.contains('img-filters__button--active'))) {
-          elem.classList.remove('img-filters__button--active');
-        }
-      });
+      // ищем активную кнопку
+      const imgFilterButtonActiveElement = imgFiltersElement.querySelector('.img-filters__button--active');
+      // убираем у нее класс
+      imgFilterButtonActiveElement.classList.remove('img-filters__button--active');
+      // добавляем класс к цели клика
       evt.target.classList.add('img-filters__button--active');
     }
     // убираем все картинки
