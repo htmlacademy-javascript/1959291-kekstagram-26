@@ -47,16 +47,17 @@ const addFilters = (data) => {
   // функция действий при клике на кнопку
   const onImgFilterButtonClick = (evt) => {
     evt.preventDefault();
-    imgFilterButtons.forEach((elem) => elem.classList.remove('img-filters__button--active'));
-    evt.target.classList.add('img-filters__button--active');
+    if (!evt.target.classList.contains('img-filters__button--active')) {
+      imgFilterButtons.forEach((elem) => {
+        if ((elem !== evt.target) && (elem.classList.contains('img-filters__button--active'))) {
+          elem.classList.remove('img-filters__button--active');
+        }
+      });
+      evt.target.classList.add('img-filters__button--active');
+    }
     // убираем все картинки
     const pictures = picturesContainer.querySelectorAll('.picture');
     pictures.forEach((elem) => elem.remove());
-
-    if (evt.target.id === 'filter-default') {
-      showDefault(data);
-      return;
-    }
 
     if (evt.target.id === 'filter-random') {
       showRandom(data);
@@ -65,7 +66,10 @@ const addFilters = (data) => {
 
     if (evt.target.id === 'filter-discussed') {
       showDiscussed(data);
+      return;
     }
+
+    showDefault(data);
   };
 
   const debounceOnImgFilterButtonClick =  debounce(onImgFilterButtonClick, DELAY);

@@ -17,13 +17,14 @@ getData(
 );
 
 // фильтры покажутся только после загрузки страницы
-window.onload = () => showFilters();
+window.addEventListener('load', showFilters);
 
 // добавляем отслеживание изменения состояния ввода данных (открытие формы при изменении)
 addFormChangeHandler();
 
 // добавляем валидацию формы
 addFormValidation();
+
 
 // добавляем масштаб и эффекты для превью фото
 addPreviewFunctional();

@@ -1,5 +1,5 @@
 import { isEscapeKey } from './util.js';
-import { imgUploadPreviewElement, hideSlider } from './form-picture.js';
+import { changeScaleToDefault, showUserPhoto, imgUploadPreviewElement, hideSlider } from './form-picture.js';
 
 // поиск необходимых элементов на странице
 const imgUploadForm = document.querySelector('.img-upload__form');
@@ -32,6 +32,8 @@ const onUploadCancelButtonClick = () => {
 openImgUploadOverlay = () => {
   imgUploadOverlay.classList.remove('hidden');
   document.body.classList.add('modal-open');
+  // добавляем фото пользователя в превью
+  showUserPhoto();
   // добавляем отслеживание нажатия кнопки Esc к документу
   document.addEventListener('keydown', onImgUploadFormEscKeydown);
   // добавляем отслеживание кнопки закрытия формы загрузки
@@ -39,6 +41,8 @@ openImgUploadOverlay = () => {
   if (!isFormHidden) {
     hideSlider();
   }
+  // возвращаем масштаб картинки по умолчанию
+  changeScaleToDefault();
 };
 
 // функция скрытия формы загрузки изображения
@@ -71,5 +75,5 @@ const addFormChangeHandler = () => {
   uploadFileElement.addEventListener('change', openImgUploadOverlay);
 };
 
-export { imgUploadForm, addFormChangeHandler, closeImgUploadOverlay, hideImgUploadOverlay };
+export { imgUploadForm, uploadFileElement, addFormChangeHandler, closeImgUploadOverlay, hideImgUploadOverlay };
 
