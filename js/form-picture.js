@@ -44,7 +44,6 @@ const showUserPhoto = () => {
   if (matches) {
     imgUploadPreviewElement.src = URL.createObjectURL(file);
   }
-
 };
 
 // ************************ часть 2.2 Наложение эффекта на изображение ***********************************************
