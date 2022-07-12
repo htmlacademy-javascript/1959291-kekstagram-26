@@ -9,7 +9,6 @@ const uploadFileElement = imgUploadForm.querySelector('#upload-file');
 
 // проверка для того, чтобы при скрытии формы, при котором сохраняются данные формы,
 // не скрывался слайдер, если он был в форме
-let isFormHidden = false;
 
 // объявление функции открытия и закрытия формы
 let openImgUploadOverlay = () => {};
@@ -38,31 +37,33 @@ openImgUploadOverlay = () => {
   document.addEventListener('keydown', onImgUploadFormEscKeydown);
   // добавляем отслеживание кнопки закрытия формы загрузки
   uploadCancelButton.addEventListener('click', onUploadCancelButtonClick);
-  if (!isFormHidden) {
-    hideSlider();
-  }
   // возвращаем масштаб картинки по умолчанию
   changeScaleToDefault();
+  hideSlider();
 };
 
 // функция скрытия формы загрузки изображения
 const hideImgUploadOverlay = () => {
-  isFormHidden = true;
   imgUploadOverlay.classList.add('hidden');
-  /* очищаю поле загрузки изображения, чтобы при попытке загрузить
-  то-же самое изображение форма снова открылась */
-  uploadFileElement.value = '';
   document.body.classList.remove('modal-open');
-  // убираем отслеживание нажатия кнопки Esc
-  document.removeEventListener('keydown', onImgUploadFormEscKeydown);
-  // убираем отслеживание кнопки закрытия формы загрузки
-  uploadCancelButton.removeEventListener('click', onUploadCancelButtonClick);
+};
+
+// функция скрытия формы загрузки изображения
+const unHideImgUploadOverlay = () => {
+  imgUploadOverlay.classList.remove('hidden');
+  document.body.classList.add('modal-open');
 };
 
 // функция закрытия формы загрузки изображения
 closeImgUploadOverlay = () => {
-  hideImgUploadOverlay();
-  isFormHidden = false;
+  imgUploadOverlay.classList.add('hidden');
+  document.body.classList.remove('modal-open');
+  // очищаем поля формы до состояния по умолчанию
+  imgUploadForm.reset();
+  // убираем отслеживание нажатия кнопки Esc
+  document.removeEventListener('keydown', onImgUploadFormEscKeydown);
+  // убираем отслеживание кнопки закрытия формы загрузки
+  uploadCancelButton.removeEventListener('click', onUploadCancelButtonClick);
   // очищаем стиль и класс у превью
   imgUploadPreviewElement.removeAttribute('style');
   imgUploadPreviewElement.removeAttribute('class');
@@ -75,5 +76,5 @@ const addFormChangeHandler = () => {
   uploadFileElement.addEventListener('change', openImgUploadOverlay);
 };
 
-export { imgUploadForm, uploadFileElement, addFormChangeHandler, closeImgUploadOverlay, hideImgUploadOverlay };
+export { imgUploadForm, uploadFileElement, addFormChangeHandler, closeImgUploadOverlay, hideImgUploadOverlay, unHideImgUploadOverlay };
 
