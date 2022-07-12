@@ -39,8 +39,6 @@ const effectsPreviewsElement = effectsListElement.querySelectorAll('.effects__pr
 
 let scaleValue = DEFAULT_SCALE_VALUE;
 
-// *********************** часть 12-2 подстановка изображения пользователя в превью *******************
-
 const showUserPhoto = () => {
   const file = uploadFileElement.files[0];
   const fileName = file.name.toLowerCase();
@@ -55,7 +53,6 @@ const showUserPhoto = () => {
   }
 };
 
-// ************************ часть 2.2 Наложение эффекта на изображение ***********************************************
 // функция изменения свойств элементов
 const changeScaleToDefault = () => {
   imgUploadPreviewElement.style.transform = `scale(${DEFAULT_SCALE_VALUE/100})`;

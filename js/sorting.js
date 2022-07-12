@@ -28,7 +28,6 @@ const showDefault = (data) => {
 const showRandom = (data) => {
   let result = [];
   while (result.length < PHOTOS_TO_SHOW) {
-    // добавляем случайный элемент в массив
     result.push(getRandomArrayElement(data));
     // сортируем массив результатов
     result = result.filter((k, i, arr) =>  arr.indexOf(k) === i);
