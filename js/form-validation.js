@@ -124,6 +124,8 @@ const addFormValidation = () =>{
   const onErrorMessageEscKeydown = (evt) => {
     if (isEscapeKey(evt)) {
       removeErrorMessage();
+      // остановим всплытие
+      evt.stopPropagation();
     }
   };
 
