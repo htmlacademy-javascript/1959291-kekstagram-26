@@ -1,5 +1,5 @@
 import { isLengthCorrect, isEscapeKey } from './util.js';
-import { imgUploadForm, closeImgUploadOverlay, hideImgUploadOverlay } from './form.js';
+import { imgUploadForm, closeImgUploadOverlay, hideImgUploadOverlay, unHideImgUploadOverlay } from './form.js';
 import { sendData } from './api.js';
 
 // максимальное число хештегов
@@ -124,6 +124,8 @@ const addFormValidation = () =>{
   const onErrorMessageEscKeydown = (evt) => {
     if (isEscapeKey(evt)) {
       removeErrorMessage();
+      // остановим всплытие
+      evt.stopPropagation();
     }
   };
 
@@ -177,9 +179,11 @@ const addFormValidation = () =>{
     successMessageElement.remove();
     document.removeEventListener('keydown', onSuccessMessageEscKeydown);
   };
+
   removeErrorMessage = () => {
     errorMessageElement.remove();
     document.removeEventListener('keydown', onErrorMessageEscKeydown);
+    unHideImgUploadOverlay();
   };
 
   imgUploadForm.addEventListener('submit', (evt) => {
