@@ -57,9 +57,9 @@ const addFormValidation = () =>{
   const isHashTagsDuplicate = (data) => {
     const tagsArray = data.split(' ');
     // создаем новый массив из уникальных элементов первого массива, переводим каждый элемент в нижний регистр
-    const uniqueTagsArray = [...new Set(tagsArray.map((elem) => elem.toLowerCase()))];
+    const uniqueTags = [...new Set(tagsArray.map((elem) => elem.toLowerCase()))];
     // сравниваем длины массивов
-    return (tagsArray.length === uniqueTagsArray.length);
+    return (tagsArray.length === uniqueTags.length);
   };
 
   // конфигурация для валидации
