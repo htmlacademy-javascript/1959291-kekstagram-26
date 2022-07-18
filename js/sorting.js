@@ -11,8 +11,8 @@ const DELAY = 500;
 const imgFiltersElement = document.querySelector('.img-filters');
 const imgFilterButtons = imgFiltersElement.querySelectorAll('.img-filters__button');
 
-// функция сортировки элементов массива по числу лайков
-const compareLikes = (dataA, dataB) => dataB.likes - dataA.likes;
+// функция сортировки элементов массива по числу комментариев
+const compareComments = (dataA, dataB) => dataB.comments.length - dataA.comments.length;
 
 // функция показать фильтры
 const showFilters = () => {
@@ -35,11 +35,11 @@ const showRandom = (data) => {
   createThumbnails(result);
 };
 
-// отображение фото упорядоченных по просмотрам
+// отображение фото упорядоченных по комментариям
 const showDiscussed = (data) => {
-  let result = data.slice();
-  result = result.sort(compareLikes);
-  createThumbnails(result);
+  let results = data.slice();
+  results = results.sort(compareComments);
+  createThumbnails(results);
 };
 
 const addFilters = (data) => {

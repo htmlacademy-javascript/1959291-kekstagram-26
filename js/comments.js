@@ -41,33 +41,30 @@ const renderComments = (object) => {
   }
 };
 
-// функция показа комментариев
-const showComments = () => {
+// Число показанных комментариев
+let commentsShown;
+
+const showHiddenComments = () => {
   // ищем все комментарии в блоке
   const socialCommentsListItems = socialCommentsListElement.querySelectorAll('.social__comment');
 
-  // начальное число показанных комментариев
-  let commentsShown = 0;
-
-  const showHiddenComments = () => {
-    for (let i = 0; i < COMMENTS_TO_SHOW; i++) {
-      if (commentsShown < socialCommentsListItems.length ) {
-        socialCommentsListItems[commentsShown].classList.remove('hidden');
-        commentsShown++;
-      }
-      if (commentsShown === socialCommentsListItems.length) {
-        commentsLoaderButton.classList.add('hidden');
-      }
+  for (let i = 0; i < COMMENTS_TO_SHOW; i++) {
+    if (commentsShown === socialCommentsListItems.length) {
+      commentsLoaderButton.classList.add('hidden');
     }
-    commentsCountShownElement.textContent = commentsShown;
-  };
+    if (commentsShown < socialCommentsListItems.length ) {
+      socialCommentsListItems[commentsShown].classList.remove('hidden');
+      commentsShown++;
+    }
+  }
+  commentsCountShownElement.textContent = commentsShown;
+};
 
+// функция показа комментариев
+const showComments = () => {
+  // начальное число показанных комментариев
+  commentsShown = 0;
   showHiddenComments();
-
-  commentsLoaderButton.addEventListener('click', () => {
-    showHiddenComments();
-    commentsCountShownElement.textContent = commentsShown;
-  });
 };
 
 // функция генерации всех данных области комментариев окна большого изображения
@@ -92,6 +89,9 @@ const renderCommentsArea = (object) => {
 
   // показываем комментарии
   showComments();
+
+  // Обработчик кнопки загрузки новых комментов
+  commentsLoaderButton.addEventListener('click', showHiddenComments);
 };
 
 export { renderCommentsArea };

@@ -25,6 +25,5 @@ addFormChangeHandler();
 // добавляем валидацию формы
 addFormValidation();
 
-
 // добавляем масштаб и эффекты для превью фото
 addPreviewFunctional();

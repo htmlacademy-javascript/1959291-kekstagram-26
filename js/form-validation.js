@@ -55,11 +55,11 @@ const addFormValidation = () =>{
 
   // проверка 3 - уникальные теги
   const isHashTagsDuplicate = (data) => {
-    const tagsArray = data.split(' ');
+    const tags = data.split(' ');
     // создаем новый массив из уникальных элементов первого массива, переводим каждый элемент в нижний регистр
-    const uniqueTagsArray = [...new Set(tagsArray.map((elem) => elem.toLowerCase()))];
+    const uniqueTags = [...new Set(tags.map((elem) => elem.toLowerCase()))];
     // сравниваем длины массивов
-    return (tagsArray.length === uniqueTagsArray.length);
+    return (tags.length === uniqueTags.length);
   };
 
   // конфигурация для валидации
